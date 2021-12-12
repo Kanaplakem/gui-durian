@@ -61,10 +61,10 @@ file = PhotoImage(file='durian.png')
 IMG = Label(GUI,image=file,text='')
 IMG.pack()
 
-L1 = Label(GUI,text='โปรแกรมคำนวณทุเรียน',font=('Angsana New',30,'bold'),fg='green')
+L1 = Label(GUI,text='โปรแกรมคำนวณแม่ค้าทุเรียน v.0.0.1',font=('Angsana New',30,'bold'),fg='green')
 L1.pack() # .place(x,y) , .grid(row=0,column=0)
 
-L2 = Label(GUI,text='กรุณากรอกจำนวนทุเรียน',font=('Angsana New',20))
+L2 = Label(GUI,text='กรุณากรอกจำนวนทุเรียน (กิโลกรัม)',font=('Angsana New',20))
 L2.pack()
 
 v_quantity = StringVar() #ตำแหน่งตัวแปรที่ใช้เก็บข้อมูลของช่องกรอก
@@ -80,7 +80,7 @@ def Calculate(event=None):
 	# EN Date
 	# stamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-	# writetext(quantity,cal)
+	
 	data = [timestamp(), quantity, cal]
 	writecsv(data)
 
@@ -97,14 +97,14 @@ B1.pack(ipadx=30,ipady=20,pady=20)
 E1.bind('<Return>',Calculate)
 
 def SummaryData(event):
-	# pop up
+	
 	sm = sumdata()
 	title = 'ยอดสรุปรวมทั้งหมด'
 	text = 'จำนวนที่ขายได้: {} กก. \nยอดขาย: {:,.2f} บาท'.format(sm[0],sm[1])
 	messagebox.showinfo(title,text)
 
 GUI.bind('<F1>',SummaryData)
-
+GUI.bind('<F2>',SummaryData)
 
 E1.focus() # 
 GUI.mainloop()
